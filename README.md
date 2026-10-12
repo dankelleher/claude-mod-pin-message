@@ -2,7 +2,7 @@
 
 A Claude Code mod that pins one model message above the prompt.
 
-![Pinning one of three similar ticket tables, asking about "my pinned message", then having Claude pin a new message](docs/demo/pin.gif)
+![Pinning one of three similar ticket tables, opening and closing the pin, asking about "my pinned message", then having Claude pin a new message](docs/demo/pin.gif)
 
 ## Install
 
