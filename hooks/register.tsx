@@ -7,6 +7,26 @@ import { cleanSummary, clip, firstWords, summaryPrompt } from './summary'
 const pin = atom({ plugin: 'pin-message', key: 'pin' } as const, null)
 
 export const register: Register = on => {
+  on('session.start', async ($, e, next) => {
+    await $.tool.register({
+      name: 'get_pinned_message',
+      description:
+        'Returns the message the person pinned above their prompt, as its full text and short summary, or says none is pinned. Call it when they refer to "the pinned message" or "what I pinned".',
+    })
+
+    return next(e)
+  })
+
+  on('tool.call', { tool: 'mcp__pin-message__get_pinned_message' }, async $ => {
+    const current = await read($, pin)
+
+    return {
+      result: current
+        ? `Summary: ${current.summary}\n\n${current.text}`
+        : 'Nothing is pinned.',
+    }
+  })
+
   on('ui.render', { component: 'AssistantMessage' }, async ($, e, next) => {
     const row = await next(e)
     const text = e.props.text.trim()

@@ -18,6 +18,7 @@ A Claude Code mod that pins one model message above the prompt.
 ## Notes
 
 - Replies are matched by text, because the transcript site carries no message id.
+- The model can read the pin through the `get_pinned_message` tool (`mcp__pin-message__get_pinned_message`, deferred behind ToolSearch).
 - Needs no other mod; mods that also draw `AbovePrompt` or `AssistantMessage` stack with it.
 
 ## Develop

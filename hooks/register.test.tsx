@@ -64,3 +64,15 @@ for (const surface of SURFACES) {
     expect(await empty.find({ type: 'Button' })).toBeUndefined()
   })
 }
+
+test('the pinned message is readable through the tool', async ($, on) => {
+  stub(on, 'Short summary')
+  on('tool.register', () => ({ value: { tool: 'mcp__pin-message__get_pinned_message' } }))
+  const call = () => $.tool.call({ tool: 'mcp__pin-message__get_pinned_message' })
+
+  expect((await call()).text ?? JSON.stringify((await call()).result)).toContain('Nothing is pinned')
+
+  const row = await $.ui.mount(message('terminal', 'The pinned body text'))
+  await row.press({ key: 'pin' })
+  expect(JSON.stringify((await call()).result)).toContain('The pinned body text')
+})
