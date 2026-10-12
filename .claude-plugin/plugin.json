@@ -1,0 +1,6 @@
+{
+  "name": "pin-message",
+  "version": "0.1.0",
+  "description": "Pin a model message: a 📌 beside each reply keeps it above the prompt, collapsible to a one-line summary.",
+  "types": "./types/index.d.ts"
+}
