@@ -76,3 +76,28 @@ test('the pinned message is readable through the tool', async ($, on) => {
   await row.press({ key: 'pin' })
   expect(JSON.stringify((await call()).result)).toContain('The pinned body text')
 })
+
+test('the model can pin text, pin its latest reply and unpin through tools', async ($, on) => {
+  stub(on, 'Short summary')
+  let replies: { role: 'user' | 'assistant'; text: string; toolUses: [] }[] = []
+  on('session.messages', () => ({ value: replies }))
+  const call = (tool: string, input: Record<string, unknown> = {}) =>
+    $.tool.call({ tool: `mcp__pin-message__${tool}`, ...input })
+  const result = async (tool: string, input?: Record<string, unknown>) => JSON.stringify((await call(tool, input)).result)
+
+  expect(await result('pin_message')).toContain('no reply')
+
+  expect(await result('pin_message', { text: 'Given text' })).toContain('Pinned')
+  expect(await result('get_pinned_message')).toContain('Given text')
+
+  replies = [
+    { role: 'assistant', text: 'Older reply', toolUses: [] },
+    { role: 'assistant', text: 'Latest reply  ', toolUses: [] },
+    { role: 'assistant', text: '', toolUses: [] },
+  ]
+  await result('pin_message')
+  expect(await result('get_pinned_message')).toContain('Latest reply')
+
+  expect(await result('unpin_message')).toContain('Unpinned')
+  expect(await result('get_pinned_message')).toContain('Nothing is pinned')
+})
