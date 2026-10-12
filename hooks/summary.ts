@@ -13,7 +13,11 @@ export const summaryPrompt = (text: string): string =>
 export const cleanSummary = (reply: string): string => {
   const words = reply.replace(/^["'\s]+|["'\s.]+$/g, '').split(/\s+/).filter(Boolean)
 
-  return words.length > WORDS + 4 ? '' : words.join(' ')
+  if (words.length > WORDS + 4) {
+    return ''
+  }
+
+  return words.length > WORDS ? `${words.slice(0, WORDS).join(' ')}…` : words.join(' ')
 }
 
 export const clip = (text: string): string => {

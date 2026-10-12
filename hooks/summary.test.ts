@@ -11,6 +11,7 @@ test('firstWords keeps ten words and marks the cut', () => {
 test('cleanSummary strips quotes and rejects a ramble', () => {
   expect(cleanSummary('"Plan for the migration."')).toBe('Plan for the migration')
   expect(cleanSummary('a b c d e f g h i j k l m n o')).toBe('')
+  expect(cleanSummary('a b c d e f g h i j k')).toBe('a b c d e f g h i j…')
 })
 
 test('clip caps the lines', () => {

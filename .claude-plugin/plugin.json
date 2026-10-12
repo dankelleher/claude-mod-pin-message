@@ -2,5 +2,11 @@
   "name": "pin-message",
   "version": "0.1.0",
   "description": "Pin a model message: a 📌 beside each reply keeps it above the prompt, collapsible to a one-line summary.",
-  "types": "./types/index.d.ts"
+  "types": "./types/index.d.ts",
+  "author": {
+    "name": "Daniel Kelleher",
+    "url": "https://github.com/dankelleher"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/dankelleher/pin-message"
 }

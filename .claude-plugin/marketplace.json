@@ -1,0 +1,12 @@
+{
+  "name": "pin-message",
+  "description": "Pin a Claude reply above the prompt.",
+  "owner": { "name": "Daniel Kelleher", "url": "https://github.com/dankelleher" },
+  "plugins": [
+    {
+      "name": "pin-message",
+      "source": "./",
+      "description": "A 📌 beside each reply keeps it above the prompt, collapsible to a one-line summary."
+    }
+  ]
+}
