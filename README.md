@@ -5,7 +5,7 @@ A Claude Code mod that pins one model message above the prompt.
 ## Install
 
 ```
-/plugin install pin-message --marketplace dankelleher/pin-message
+/plugin install pin-message --marketplace dankelleher/claude-mod-pin-message
 ```
 
 Answer `y` to add the marketplace, then pick a scope. It is active at once.
