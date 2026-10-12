@@ -2,6 +2,10 @@
 
 A Claude Code mod that pins one model message above the prompt.
 
+![Pinning a reply: the 📌 button, the one-line summary above the prompt, expanding and unpinning](docs/demo/pin.gif)
+
+The recording is `docs/demo/pin.cast`; play it with `asciinema play docs/demo/pin.cast`.
+
 ## Install
 
 ```
